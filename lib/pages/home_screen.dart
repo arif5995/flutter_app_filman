@@ -49,11 +49,12 @@ class HomeScreen extends StatelessWidget {
                                           // context.read<DataPeopleBloc>().add(
                                           //     DataPeopleDetail(
                                           //         people: state.people[index]));
+
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DetailScreen()));
+                                                      DetailScreen(people: state.people[index],)));
 
                                         },
                                         title: Text(state.people[index].name),

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "375755186471",
+    "project_id": "flutterfileman",
+    "storage_bucket": "flutterfileman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375755186471:android:2de614bd506f117b264902",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app_filman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375755186471-56j5nr5chb1ga5nsb11f9kht3arue64s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_app_filman",
+            "certificate_hash": "3c811a330a3ff8c9aebe3606bb41a44f7d78b472"
+          }
+        },
+        {
+          "client_id": "375755186471-j46b9q97tbmt1u6qnlig575dpbquljb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDCRFHjnpOu_PjDPWsEIwMkv7nKt0KDsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375755186471-j46b9q97tbmt1u6qnlig575dpbquljb0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -99,7 +99,6 @@ class ServicesData {
     String path = join(databasesPath, 'Database.db');
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
     final integerType = 'INTEGER NOT NULL';
 
     return openDatabase(path, version: 1,
@@ -114,39 +113,13 @@ class ServicesData {
                   eye_color $textType,
                   birth_year $textType,
                   gender $textType,
-                  homeworld $textType
-                )
-            ''');
-    });
-  }
-
-  Future<Database> initializeDBFavorit() async {
-    // Get a location using getDatabasesPath
-    var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'Database.db');
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
-
-    return openDatabase(path, version: 1,
-        onCreate: (Database db, int version) async {
-      await db.execute('''CREATE TABLE Favorit ( 
-                  id $idType, 
-                  idPeople $integerType, 
-                  name $textType,
-                  height $textType,
-                  mass $textType,
-                  hair_color $textType,
-                  skin_color $textType,
-                  eye_color $textType,
-                  birth_year $textType,
-                  gender $textType,
                   homeworld $textType,
+                  favorite $integerType
                 )
             ''');
     });
   }
+
 
 
   Future<int> insertDataFromApi(List<People> peoples) async {
@@ -162,26 +135,58 @@ class ServicesData {
     return result;
   }
 
-  Future<int> insertData(Map<String, dynamic> peoples) async {
+  Future<int> insertData(People peoples) async {
     int result = 0;
     final Database db = await initializeDBPeople();
     print('peoples $peoples');
     // for (var task in tasks) {
     //   result = await db.insert('Task', task.toMap());
     // }
-    result = await db.insert('People', peoples);
+    result = await db.insert('People', peoples.toMap());
     return result;
+  }
+
+  Future<List<People>> sortBy(String sort) async {
+    final Database db = await initializeDBPeople();
+    final List<Map<String, Object?>> queryResult =
+    await db.query('People', orderBy: 'name '+sort);
+    print('sort $queryResult');
+    return queryResult.map((val) => PeopleModel.fromJson(val)).toList();
+  }
+
+  Future<List<People>> listFavorite(int paporite) async {
+    final Database db = await initializeDBPeople();
+    final List<Map<String, Object?>> queryResult =
+    await db.query('People', where: 'favorite = ?', whereArgs: [paporite]);
+    print('sort $queryResult');
+    return queryResult.map((val) => PeopleModel.fromJson(val)).toList();
+  }
+
+  Future<int> favoritkan(int id, int fav) async {
+    final Database db = await initializeDBPeople();
+    return await db.update('People',{'favorite': fav}, where: 'id = ?', whereArgs: [id]);
   }
 
   Future<List<People>> retrievePeople() async {
     final Database db = await initializeDBPeople();
     final List<Map<String, Object?>> queryResult =
     await db.query('People');
+    print('retrive $queryResult');
     return queryResult.map((val) => PeopleModel.fromJson(val)).toList();
   }
 
-  Future<int> updatePeople(Map<String, dynamic> data, int id) async {
+  Future<int> updatePeople(People data) async {
     final Database db = await initializeDBPeople();
-    return await db.update('People', data, where: 'id = ?', whereArgs: [id]);
+    return await db.update('People', data.toMap(), where: 'id = ?', whereArgs: [data.id]);
+  }
+
+  Future<int> deletePeople(int id) async {
+    final Database db = await initializeDBPeople();
+    return await db.delete('People', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<int> deleteFavorite(int id) async {
+    final Database db = await initializeDBPeople();
+    return await db.update('People', {'favorite': 0}, where: 'id = ?', whereArgs: [id]);
   }
 }

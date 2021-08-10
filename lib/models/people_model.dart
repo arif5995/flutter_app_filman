@@ -6,8 +6,8 @@ part 'people_model.g.dart';
 @JsonSerializable()
 class PeopleModel extends People {
   PeopleModel(
-      {
-        required name,
+      {id,
+      required name,
       required height,
       required mass,
       required skin_color,
@@ -15,8 +15,10 @@ class PeopleModel extends People {
       required eye_color,
       required birth_year,
       required gender,
-      required homeworld})
+      required homeworld,
+      favorite})
       : super(
+            id: id,
             name: name,
             mass: mass,
             height: height,
@@ -25,8 +27,11 @@ class PeopleModel extends People {
             eye_color: eye_color,
             birth_year: birth_year,
             gender: gender,
-            homeworld: homeworld);
+            homeworld: homeworld,
+            favorite: favorite);
 
-  factory PeopleModel.fromJson(Map<String, dynamic> json) => _$PeopleModelFromJson(json);
+  factory PeopleModel.fromJson(Map<String, dynamic> json) =>
+      _$PeopleModelFromJson(json);
+
   Map<String, dynamic> toJson() => _$PeopleModelToJson(this);
 }

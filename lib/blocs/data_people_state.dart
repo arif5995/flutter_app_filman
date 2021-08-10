@@ -9,6 +9,11 @@ class DataPeopleInitial extends DataPeopleState {
   List<Object> get props => [];
 }
 
+class DataPeopleLoading extends DataPeopleState {
+  @override
+  List<Object> get props => [];
+}
+
 class DataPeopleLoaded extends DataPeopleState {
   final List<People> people;
 
@@ -39,4 +44,14 @@ class DataPeopleSukses extends DataPeopleState {
   DataPeopleSukses({required this.sukses});
   @override
   List<Object> get props => [sukses];
+}
+
+class DataPeopleBool extends DataPeopleState {
+  final bool button;
+
+  DataPeopleBool({required this.button});
+
+  @override
+  List<Object?> get props => [button];
+
 }

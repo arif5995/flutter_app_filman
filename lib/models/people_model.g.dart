@@ -8,20 +8,22 @@ part of 'people_model.dart';
 
 PeopleModel _$PeopleModelFromJson(Map<String, dynamic> json) {
   return PeopleModel(
-    name: json['name'],
-    height: json['height'],
-    mass: json['mass'],
-    skin_color: json['skin_color'],
-    hair_color: json['hair_color'],
-    eye_color: json['eye_color'],
-    birth_year: json['birth_year'],
-    gender: json['gender'],
-    homeworld: json['homeworld'],
-  );
+      id: json['id'],
+      name: json['name'],
+      height: json['height'],
+      mass: json['mass'],
+      skin_color: json['skin_color'],
+      hair_color: json['hair_color'],
+      eye_color: json['eye_color'],
+      birth_year: json['birth_year'],
+      gender: json['gender'],
+      homeworld: json['homeworld'],
+      favorite: json['favorite']);
 }
 
 Map<String, dynamic> _$PeopleModelToJson(PeopleModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'height': instance.height,
       'mass': instance.mass,
@@ -31,4 +33,5 @@ Map<String, dynamic> _$PeopleModelToJson(PeopleModel instance) =>
       'birth_year': instance.birth_year,
       'gender': instance.gender,
       'homeworld': instance.homeworld,
+      'favorite': instance.favorite
     };

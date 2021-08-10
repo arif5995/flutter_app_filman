@@ -9,10 +9,12 @@ class People {
   final String birth_year;
   final String gender;
   final String homeworld;
+  final int? favorite;
 
   People(
       {
         this.id,
+        this.favorite,
         required this.name,
         required this.height,
         required this.mass,
@@ -34,7 +36,8 @@ class People {
       'eye_color': eye_color,
       'birth_year': birth_year,
       'gender': gender,
-      'homeworld': homeworld
+      'homeworld': homeworld,
+      'favorite' : favorite == null ? 0 : 1
     };
   }
 }

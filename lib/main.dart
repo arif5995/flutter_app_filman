@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_filman/blocs/authenticate_bloc.dart';
@@ -5,13 +6,16 @@ import 'package:flutter_app_filman/bottom_navbar.dart';
 import 'package:flutter_app_filman/pages/login_screen.dart';
 import 'package:flutter_app_filman/services/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(BlocProvider(
-    create: (context) => AuthenticateBloc(servicesData: ServicesData())
-      ..add(AuthEventAppStarted()),
-    child: MyApp(),
+  runApp(GetMaterialApp(
+    home: BlocProvider(
+      create: (context) => AuthenticateBloc(servicesData: ServicesData())
+        ..add(AuthEventAppStarted()),
+      child: MyApp(),
+    ),
   ));
 }
 
@@ -23,7 +27,9 @@ class MyApp extends StatelessWidget {
     /// directly inside [build].
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
+        builder: BotToastInit(), //1. call BotToastInit
+        navigatorObservers: [BotToastNavigatorObserver()],
         title: 'Flutter Demo',
         home: FutureBuilder(
             future: _initialization,

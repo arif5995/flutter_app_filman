@@ -78,35 +78,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 20.0),
-                  //   child: GestureDetector(
-                  //     child: Icon(Icons.search),
-                  //     onTap: () {},
-                  //   ),
-                  // ),
-                  // BlocBuilder<DataPeopleBloc, DataPeopleState>(
-                  //   builder: (context, state) {
-                  //     DataPeopleState dataPeopleState = context.watch<DataPeopleBloc>().state;
-                  //     bool warna = (dataPeopleState as DataPeopleBool).button;
-                  //     print('bool $warna');
-                  //     return Padding(
-                  //       padding: const EdgeInsets.only(right: 20.0),
-                  //       child: GestureDetector(
-                  //         child: Icon(
-                  //           Icons.filter_alt,
-                  //           color: warna ? Colors.white : Colors.grey,
-                  //         ),
-                  //         onTap: () {
-                  //           print('tap1');
-                  //           context
-                  //               .read<DataPeopleBloc>()
-                  //               .add(DataPeopleSort());
-                  //         },
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
+
                 ],
                 bottom: TabBar(
                   tabs: [

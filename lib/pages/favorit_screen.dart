@@ -30,7 +30,7 @@ class FavoritScreen extends StatelessWidget {
               // ));
               BotToast.showSimpleNotification(
                   title: state.sukses, duration: Duration(seconds: 10));
-              context.read<DataPeopleBloc>().add(DataPeopleStart());
+              context.read<DataPeopleBloc>().add(DataPeopleFavorite());
               // Get.offAll(BottomNavBar())
             }
           },

@@ -40,6 +40,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       if (event.user.uid != ''){
         // dataTaskBloc.add(DataTaskUser(uid: event.user.uid));
         _pref.setString('uid', event.user.uid);
+        _pref.setString('name', event.user.displayName!);
+        _pref.setString('email', event.user.email!);
+        _pref.setString('photo', event.user.photoURL!);
         yield AuthtenticateLoaded(user: event.user);
       } else {
         yield AuthtenticateNotLoaded();
@@ -48,6 +51,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
 
     if (event is SignOutLoaded){
       var logout = await servicesData.signOut();
+      _pref.clear();
       print("logout $logout");
       yield AuthtenticateNotLoaded();
     }

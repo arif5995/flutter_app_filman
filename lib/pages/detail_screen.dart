@@ -91,9 +91,12 @@ class _DetailScreenState extends State<DetailScreen> {
                     });
                   },
                   icon: Icon(Icons.edit)),
-              Icon(
-                Icons.favorite,
-                color: listPeople.favorite == 1 ? Colors.red : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.favorite,
+                  color: listPeople.favorite == 1 ? Colors.red : Colors.grey,
+                ),
               )
             ],
           ),
@@ -105,7 +108,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 //   duration: Duration(seconds: 1),
                 //   backgroundColor: Colors.green,
                 // ));
-                Get.off(BottomNavBar());
+                Get.to(BottomNavBar());
               }
               if (state is DataPeopleFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -221,7 +224,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                           hairColor: _hairColorController.text,
                                           birthYear: _birthYearController.text,
                                           gender: _genderController.text,
-                                          favorite: pressAttention1 ? 1 : 0));
+                                          favorite: listPeople.favorite!,
+                                      ));
                                 }
                               : null,
                           child: Text(

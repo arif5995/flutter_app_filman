@@ -52,7 +52,7 @@ class _AddScreenState extends State<AddScreen> {
                 //   duration: Duration(seconds: 1),
                 //   backgroundColor: Colors.green,
                 // ));
-                Get.off(BottomNavBar());
+                Get.to(BottomNavBar());
               }
               if (state is DataPeopleFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(

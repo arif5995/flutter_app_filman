@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
     home: BlocProvider(
       create: (context) => AuthenticateBloc(servicesData: ServicesData())
         ..add(AuthEventAppStarted()),
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     /// directly inside [build].
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
     return MaterialApp(
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         builder: BotToastInit(), //1. call BotToastInit
         navigatorObservers: [BotToastNavigatorObserver()],
         title: 'Flutter Demo',
@@ -55,8 +56,14 @@ class MyApp extends StatelessWidget {
                         ),
                       );
                     }
-
-                    return LoginScreen();
+                    if (state is AuthtenticateNotLoaded) {
+                      return LoginScreen();
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    );
                   },
                 );
               }

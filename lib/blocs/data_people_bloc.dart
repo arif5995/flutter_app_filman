@@ -124,7 +124,7 @@ class DataPeopleBloc extends Bloc<DataPeopleEvent, DataPeopleState> {
     if (event is DataPeopleDelFav) {
       final delFav = await servicesData.deleteFavorite(event.index);
       if (delFav != 0) {
-        yield DataPeopleSukses(sukses: 'Data Berhasil Dihapus!');
+        yield DataPeopleSukses(sukses: 'Data Berhasil Dikeluarkan');
       } else {
         yield DataPeopleFailure(error: 'Data Gagal Dihapus');
       }
